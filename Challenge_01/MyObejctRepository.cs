@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Challenge_01
 {
-    class Program
+    class MyObejctRepository
     {
-        static void Main(string[] args)
-        {
-            ProgramUI program = new ProgramUI();
-            program.Run();
-        }
     }
 }
