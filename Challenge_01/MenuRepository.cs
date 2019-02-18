@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Challenge_01
 {
-    class MenuRepository
+    public class MenuRepository
     {
         List<Menu> _menuList; //naming the list collection type to be used in UI
 
