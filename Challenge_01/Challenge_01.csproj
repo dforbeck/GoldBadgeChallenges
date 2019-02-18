@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyObejctRepository.cs" />
+    <Compile Include="MenuRepository.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="POCO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramUI.cs" />
@@ -52,6 +53,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="TextMenuPrompt.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
