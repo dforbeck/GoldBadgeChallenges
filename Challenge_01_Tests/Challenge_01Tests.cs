@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Challenge_02;
+using Challenge_01;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Challenge_01_Tests
