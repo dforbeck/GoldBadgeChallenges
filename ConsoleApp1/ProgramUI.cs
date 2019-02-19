@@ -32,8 +32,15 @@ namespace Challenge_02
                         break;
 
                     case 2: //Take care of next claim in queue
-                        Console.WriteLine($"You just took care of the next claim in the queue, {_claimQueue.Peek().ClaimID}");
-                        _claimRepo.DequeueClaimFromQueue();
+                        Console.WriteLine($"Here are the details for the next claim to be handled:{_claimQueue.Peek()}");
+                        Console.WriteLine("Do you want to deal with this claim now (Y/N)?");
+                       string dealNowStr = Console.ReadLine().ToLower();
+                        bool dealNow;
+                        if (dealNowStr.Contains("y"))
+                            dealNow = true;
+                        Console.WriteLine($"You chose to deal with the claim {_claimQueue.Peek().ClaimID}!"); _claimRepo.DequeueClaimFromQueue();
+                        else
+                            dealNow = false;
                         break;
 
                     case 3: //Add claim to queue
@@ -51,19 +58,51 @@ namespace Challenge_02
 
         private void GetUserInputforQueue()
         {
-            throw new NotImplementedException();
+            Claim newClaim = new Claim();
+
+            Console.WriteLine("Enter the Claim ID");
+            int claimID = int.Parse(Console.ReadLine());
+            newClaim.ClaimID = claimID;
+
+            Console.WriteLine("What type of Claim is it?\n\t" +
+                "1. Car\n\t"+
+                "2. Home\n\t" +
+                "3. Theft\n\t" +
+                );
+
+            int typeInput = int.Parse(Console.ReadLine());
+            ClaimType type = _claimRepo.GetTypeFromInput(typeInput);
+            newClaim.TypeOfClaim = type;
+
+            Console.WriteLine("Please enter a Description of event");
+            string description = Console.ReadLine();
+            newClaim.Description = description;
+
+            Console.WriteLine("Please enter the Amount of the claim\n\tExample: 5000.89");
+            double amount = double.Parse(Console.ReadLine());
+            newClaim.ClaimAmount = amount;
+
+            Console.WriteLine("Please enter incident date\n\tExample: mm/dd/yyyy");
+            DateTime incidentDate= DateTime.Parse(Console.ReadLine());
+            newClaim.DateOfIncident = incidentDate;
 
 
+            Console.WriteLine("Please enter Claim date\n\tExample: mm/dd/yyyy");
+            DateTime claimDate= DateTime.Parse(Console.ReadLine());
+            newClaim.DateOfClaim = claimDate;
+
+            Console.WriteLine($"Is Claim valid? i.e. is {claimDate} less than or equal to 30 days from {incidentDate}? (Y/N)");
+            string isValidStr = Console.ReadLine().ToLower();
+            bool isValid;
+            if (isValidStr.Contains("y"))
+                isValid = true;
+            else
+                isValid = false;
+            newClaim.IsValid = isValid;
 
 
-
-
+            _claimRepo.AddClaimToQueue(newClaim); //Adds new claim with all above details to queue.
         }
-
-
-
-
-
 
         private void SeeAllClaimsQ()
         {
@@ -91,11 +130,11 @@ namespace Challenge_02
 
         private void SeedData()
         {
-            _claimRepo.AddClaimToQueue(new Claim(5, ClaimType.Car, "Crash into pole", 500, DateTime.Parse("11/05/2018"), DateTime.Parse("12/05/2018"), true));
+            _claimRepo.AddClaimToQueue(new Claim(5, ClaimType.Car, "Crash into pole", 500, DateTime.Parse("11/05/2018"), DateTime.Parse("12/15/2018"), false));
 
-            _claimRepo.AddClaimToQueue(new Claim(5, ClaimType.Home, "Hail", 500, DateTime.Parse("08/05/2018"), DateTime.Parse("09/05/2018"), true));
+            _claimRepo.AddClaimToQueue(new Claim(5, ClaimType.Home, "Hail", 500, DateTime.Parse("08/05/2018"), DateTime.Parse("08/15/2018"), true));
 
-            _claimRepo.AddClaimToQueue(new Claim(5, ClaimType.Theft, "Home Broken Into", 500, DateTime.Parse("11/05/2018"), DateTime.Parse("12/05/2018"), true));
+            _claimRepo.AddClaimToQueue(new Claim(5, ClaimType.Theft, "Home Broken Into", 500, DateTime.Parse("11/05/2018"), DateTime.Parse("11/06/2019"), false));
 
         }
     }

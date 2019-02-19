@@ -32,5 +32,28 @@ namespace Challenge_02
         {
             _claimQueue.Enqueue(claim);
         }
+
+        public ClaimType GetTypeFromInput(int typeInput)
+        {
+            ClaimType type;
+            switch (typeInput)
+            {
+                case 1:
+                    type = ClaimType.Car;
+                    break;
+                case 2:
+                    type = ClaimType.Home;
+                    break;
+                case 3:
+                    type = ClaimType.Theft;
+                    break;
+                default:
+                    type = ClaimType.Home;
+                    break;
+            }
+            return type;
+        }
+       
+
     }
 }
