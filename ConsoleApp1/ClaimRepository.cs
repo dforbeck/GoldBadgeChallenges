@@ -9,6 +9,7 @@ namespace Challenge_02
     public class ClaimRepository
     {
         List<Claim> _claimList; //naming the list
+        Queue<Claim> _claimQueue = new Queue<Claim>();
 
         public List<Claim> GetClaimList()
         {
@@ -16,9 +17,20 @@ namespace Challenge_02
             return _claimList;
         }
 
-        public void AddClaimToList(Claim claim)
+       public Queue<Claim> GetClaimQueue()
         {
-            _claimList.Add(claim);
+            _claimQueue = new Queue<Claim>();
+            return _claimQueue;
+        }
+
+        public void DequeueClaimFromQueue()
+        {
+            _claimQueue.Dequeue();
+        }
+
+        public void AddClaimToQueue(Claim claim)
+        {
+            _claimQueue.Enqueue(claim);
         }
     }
 }
