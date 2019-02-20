@@ -69,7 +69,7 @@ namespace Challenge_03
             EventType eventType = _outingsRepo.GetTypeFromInput(typeInput);
             double typecost = _outingsRepo.GetOutingsCostByType(eventType);
 
-            Console.WriteLine($"Your cost for the outings {eventType} your total cost was {typecost}");
+            Console.WriteLine($"Your cost for the {eventType} type Outings was {typecost}");
         }
 
 

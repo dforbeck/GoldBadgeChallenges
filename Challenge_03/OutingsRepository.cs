@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Challenge_03
 {
-    class OutingsRepository
+    public class OutingsRepository
     {
-        List<Outings> _outingsList;
+        List<Outings> _outingsList /* = new List<Outings>();*/
 
         public List<Outings> GetOutingsList()
         {
@@ -48,19 +48,19 @@ namespace Challenge_03
 
         }
 
-        internal double GetOutingsCostByType(EventType eventType)
+        public double GetOutingsCostByType(EventType eventType)
         {
-            double typecostsum = 0;
+            double typeCostSum = 0;
             foreach (Outings outing in _outingsList)
             {
-                if (eventType == outing.TypeOfEvent)   //eventype if coming from program UI user input
+                if (eventType == outing.TypeOfEvent)   //evenType if coming from program UI user input
                 {
-                    typecostsum += outing.TotalEventCost;
+                    typeCostSum += outing.TotalEventCost;
                 } 
 
             }
 
-            return typecostsum;
+            return typeCostSum;
 
         }
     }
