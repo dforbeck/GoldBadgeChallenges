@@ -14,23 +14,22 @@ namespace Challenge_03
         public int NumberPeople { get; set; }
         public DateTime EventDate { get; set; }
         public EventType TypeOfEvent { get; set; }
-	    double CostPerPerson { get; set; }
-        public double TotalEventCost { get { return CalculateEventCost(); } }
+	    public double CostPerPerson { get; set; }
+        public double TotalEventCost { get; set; } /*{ get { return CalculateEventCost(); } }*/
 
-        public double CalculateEventCost()
-        {
-            return CostPerPerson * NumberPeople;
-        }
+
 
         public Outings() // empty constructor
         {
         }
 
-        public Outings(int numberPeople, DateTime eventdate, EventType eventType, double costPerPerson, double totalEventCost)
+        public Outings(int numberPeople, DateTime eventdate, EventType eventType, double costPerPerson)
         {
             NumberPeople = numberPeople;
+            EventDate = eventdate;
             TypeOfEvent = eventType;
             CostPerPerson = costPerPerson;
+            TotalEventCost = costPerPerson * numberPeople;
         }
     }
 }
