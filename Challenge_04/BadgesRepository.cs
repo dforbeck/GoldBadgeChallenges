@@ -23,9 +23,22 @@ namespace Challenge_04
 
         public void AddBadgeToDictionary(Badges badge)
         {
-            _badgeDictionary.Add(badge.BadgeID, badges);
+            _badgeDictionary.Add(badge.BadgeID, badge);
         }
 
+        internal int SetAccessFromInput(int doorOneInput, int doorTwoInput, int doorThreeInput, int doorFourInput)
+        {
+            switch(doorOneInput)
+            {
+                case 1:
 
+                    break;
+
+                default:
+                    break;
+            }
+
+            
+        }
     }
 }

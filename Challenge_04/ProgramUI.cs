@@ -9,7 +9,7 @@ namespace Challenge_04
     public class ProgramUI
     {
         BadgesRepository _badgesRepo = new BadgesRepository();
-        Dictionary<int, Doors> _badgeDictionary; //here it is on the shelf!  It's available
+        Dictionary<int, Badges> _badgeDictionary; //here it is on the shelf!  It's available
 
         int _response;
 
@@ -28,7 +28,7 @@ namespace Challenge_04
 
                         break;
                     case 2: // Edit a badge
-
+                        AddBadge()
                         break;
 
                     case 3: //List all badges
@@ -48,6 +48,26 @@ namespace Challenge_04
 
             }
            
+
+
+        }
+
+        private void AddBadge()
+        {
+            Console.WriteLine("What is the number of the badge\n\t");
+            string badgeIDStr = Console.ReadLine();
+            int badgeID = int.Parse(badgeIDStr);
+
+            Console.WriteLine("List a door that it needs acess to.  Please enter a number and press enter.\n\t"+
+                "1. Door 1"+
+                "2. Door 2"+
+                "3. Door 3"+
+                "4. Door 4");
+
+            int doorOneInput = int.Parse(Console.ReadLine());
+
+            int doorOne = _badgesRepo.SetAccessFromInput(doorOneInput);
+
 
 
         }
