@@ -9,36 +9,62 @@ namespace Challenge_04
     
     public class BadgesRepository
     {
-        Badges badges = new Badges();
+        Badge badges = new Badge();
 
-        List<Badges> _badgeList;
+        List<Badge> _badgeList;
 
-        public Dictionary<int, Badges > _badgeDictionary = new Dictionary<int, Badges>();
+        public Dictionary<int, Badge > _badgeDictionary = new Dictionary<int, Badge>();
             
-         public Dictionary<int, Badges> GetBadgeDictionary()
+         public Dictionary<int, Badge> GetBadgeDictionary()
         {
-            _badgeDictionary = new Dictionary<int, Badges>();
+            _badgeDictionary = new Dictionary<int, Badge>();
             return _badgeDictionary;
         }
 
-        public void AddBadgeToDictionary(Badges badge)
+        public void AddBadgeToDictionary(Badge badge)
         {
+
             _badgeDictionary.Add(badge.BadgeID, badge);
         }
 
-        internal int SetAccessFromInput(int doorOneInput, int doorTwoInput, int doorThreeInput, int doorFourInput)
+        public Badge SetAccessFromInput(Badge badge,int newDoorAccess)
         {
-            switch(doorOneInput)
+            switch (newDoorAccess)
             {
                 case 1:
+                    badge.AccessDoorOne = true;
+                    break;
 
+                case 2:
+                    badge.AccessDoorTwo = true;
+                    break;
+
+                case 3:
+                    badge.AccessDoorThree = true;
+                    break;
+
+                case 4:
+                    badge.AccessDoorFour = true;
                     break;
 
                 default:
                     break;
-            }
 
-            
+            }
+            return badge;
+
+        }
+
+        internal void AddDoor(int badgeID, int door)
+        {
+            _badgeDictionary[badgeID].
+
+
+        }
+
+        internal void RemoveDoor(int badgeID)
+        {
+           
         }
     }
 }

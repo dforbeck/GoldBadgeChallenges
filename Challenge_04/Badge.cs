@@ -8,7 +8,7 @@ namespace Challenge_04
 {
     /*public enum Doors{DoorOne, DoorTwo, DoorThree, DoorFour}*/
 
-    public class Badges
+    public class Badge
     {
         public int BadgeID { get; set; }
         public bool AccessDoorOne { get; set; }
@@ -17,12 +17,12 @@ namespace Challenge_04
         public bool AccessDoorFour { get; set; }
 
         //empty constructor
-        public Badges()
+        public Badge()
         {
         }
 
         //overloaded constructor
-        public Badges(int badgeID, bool doorOne, bool doorTwo, bool doorThree, bool doorFour)
+        public Badge(int badgeID, bool doorOne, bool doorTwo, bool doorThree, bool doorFour)
         {
             BadgeID = badgeID;
             AccessDoorOne = doorOne;

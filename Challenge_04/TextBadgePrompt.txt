@@ -43,7 +43,7 @@ Menu
 
 #2 Update a badge
 
-	What is the badge number to update? 12345
+What is the badge number to update? 12345
 	12345 has access to doors A5 & A7.
 	What would you like to do?
 		1. Remove a door
