@@ -11,8 +11,20 @@ namespace Challenge_04
     {
         Badges badges = new Badges();
 
-        Dictionary<int, Doors> badgeDictionary = new Dictionary<int, Doors>();
+        List<Badges> _badgeList;
 
+        public Dictionary<int, Badges > _badgeDictionary = new Dictionary<int, Badges>();
+            
+         public Dictionary<int, Badges> GetBadgeDictionary()
+        {
+            _badgeDictionary = new Dictionary<int, Badges>();
+            return _badgeDictionary;
+        }
+
+        public void AddBadgeToDictionary(Badges badge)
+        {
+            _badgeDictionary.Add(badge.BadgeID, badges);
+        }
 
 
     }

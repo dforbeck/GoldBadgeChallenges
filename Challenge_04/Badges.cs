@@ -6,21 +6,29 @@ using System.Threading.Tasks;
 
 namespace Challenge_04
 {
-    public enum Doors{DoorOne, DoorTwo, DoorThree, DoorFour}
+    /*public enum Doors{DoorOne, DoorTwo, DoorThree, DoorFour}*/
 
     public class Badges
     {
         public int BadgeID { get; set; }
-        public Doors DoorNames { get; set; }
+        public bool AccessDoorOne { get; set; }
+        public bool AccessDoorTwo { get; set; }
+        public bool AccessDoorThree { get; set; }
+        public bool AccessDoorFour { get; set; }
 
+        //empty constructor
         public Badges()
         {
         }
 
-        public Badges(int badgeID, Doors doorNames )
+        //overloaded constructor
+        public Badges(int badgeID, bool doorOne, bool doorTwo, bool doorThree, bool doorFour)
         {
             BadgeID = badgeID;
-            DoorNames = doorNames;
+            AccessDoorOne = doorOne;
+            AccessDoorOne = doorTwo;
+            AccessDoorOne = doorThree;
+            AccessDoorOne = doorFour;
         }
 
 
