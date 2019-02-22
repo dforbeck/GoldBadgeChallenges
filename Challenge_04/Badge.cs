@@ -30,8 +30,6 @@ namespace Challenge_04
             AccessDoorOne = doorThree;
             AccessDoorOne = doorFour;
         }
-
-
     }
 
     

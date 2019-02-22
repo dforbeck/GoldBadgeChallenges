@@ -67,8 +67,7 @@ namespace Challenge_04
                     "1. Door 1\n\t" +
                     "2. Door 2\n\t" +
                     "3. Door 3\n\t" +
-                    "4. Door 4\n\t");
-                    
+                    "4. Door 4\n\t");                    
                     _badgesRepo.RemoveDoor(badgeID, Badge);
                     break;
 

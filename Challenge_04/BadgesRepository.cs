@@ -49,17 +49,13 @@ namespace Challenge_04
 
                 default:
                     break;
-
             }
             return badge;
-
         }
 
         internal void AddDoor(int badgeID, int door)
         {
             _badgeDictionary[badgeID].
-
-
         }
 
         internal void RemoveDoor(int badgeID)
