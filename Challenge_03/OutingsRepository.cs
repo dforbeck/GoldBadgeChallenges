@@ -8,7 +8,7 @@ namespace Challenge_03
 {
     public class OutingsRepository
     {
-        List<Outings> _outingsList /* = new List<Outings>();*/
+        List<Outings> _outingsList;  /* = new List<Outings>();*/
 
         public List<Outings> GetOutingsList()
         {

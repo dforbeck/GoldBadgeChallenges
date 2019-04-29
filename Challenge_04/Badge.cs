@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,20 @@ using System.Threading.Tasks;
 
 namespace Challenge_04
 {
-    /*public enum Doors{DoorOne, DoorTwo, DoorThree, DoorFour}*/
-
-    public class Badge
+   public class Badge
     {
         public int BadgeID { get; set; }
-        public bool AccessDoorOne { get; set; }
-        public bool AccessDoorTwo { get; set; }
-        public bool AccessDoorThree { get; set; }
-        public bool AccessDoorFour { get; set; }
+        public int DoorID { get; set; }
+        public string DoorName { get; set; }
+
+        public List<Badge> _doorList = new List<Badge>() {  
+                new Badge(){ DoorID=1, DoorName="One"},
+                new Badge(){ DoorID=2, DoorName="Two"},
+                new Badge(){ DoorID=3, DoorName="Three"},
+                new Badge(){ DoorID=4, DoorName="Four"},
+                new Badge(){ DoorID=5, DoorName="Five"},
+                new Badge(){ DoorID=6, DoorName="Six"}
+            };
 
         //empty constructor
         public Badge()
@@ -22,13 +28,10 @@ namespace Challenge_04
         }
 
         //overloaded constructor
-        public Badge(int badgeID, bool doorOne, bool doorTwo, bool doorThree, bool doorFour)
+        public Badge(int badgeID, List<Badge> _theDoorList)
         {
             BadgeID = badgeID;
-            AccessDoorOne = doorOne;
-            AccessDoorOne = doorTwo;
-            AccessDoorOne = doorThree;
-            AccessDoorOne = doorFour;
+            _doorList = _theDoorList;
         }
     }
 

@@ -9,13 +9,9 @@ namespace Challenge_04
     
     public class BadgesRepository
     {
-        Badge badges = new Badge();
-
-        List<Badge> _badgeList;
-
-        public Dictionary<int, Badge > _badgeDictionary = new Dictionary<int, Badge>();
+        public Dictionary<int, Badge> _badgeDictionary = new Dictionary<int, Badge>();
             
-         public Dictionary<int, Badge> GetBadgeDictionary()
+        public Dictionary<int, Badge> GetBadgeDictionary()
         {
             _badgeDictionary = new Dictionary<int, Badge>();
             return _badgeDictionary;
@@ -23,34 +19,28 @@ namespace Challenge_04
 
         public void AddBadgeToDictionary(Badge badge)
         {
-
             _badgeDictionary.Add(badge.BadgeID, badge);
         }
 
-        public Badge SetAccessFromInput(Badge badge,int newDoorAccess)
+        public Dictionary GetDoorNameFromInput(int typeInput)
         {
-            switch (newDoorAccess)
+            Badge type;
+            switch (typeInput)
             {
                 case 1:
-                    badge.AccessDoorOne = true;
+                    type = _doorInput;
                     break;
-
                 case 2:
-                    badge.AccessDoorTwo = true;
+                    type = ClaimType.Home;
                     break;
-
                 case 3:
-                    badge.AccessDoorThree = true;
+                    type = ClaimType.Theft;
                     break;
-
-                case 4:
-                    badge.AccessDoorFour = true;
-                    break;
-
                 default:
+                    type = ClaimType.Home;
                     break;
             }
-            return badge;
+            return type;
         }
 
         internal void AddDoor(int badgeID, int door)
