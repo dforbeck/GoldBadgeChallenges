@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 
 namespace Challenge_04
 {
+    
+
     public class ProgramUI
     {
-        BadgesRepository _badgesRepo = new BadgesRepository();
+        public BadgesRepository _badgeRepo = new BadgesRepository();
         Dictionary<int, Badge> _badgeDictionary; //here it is on the shelf!  It's available
 
         int _response;
 
         public void Run()
         {
-            _badgeDictionary = _badgesRepo.GetBadgeDictionary(); // Now I get it off the shelf and use it.
-            SeedData();
+            _badgeDictionary = _badgeRepo.GetBadgeDictionary(); // Now I get it off the shelf and use it
 
             while (_response !=4) //#4 is Exit Choice on menu
             {
+                SeedData();
+
                 PrintMenu();
+
 
                 switch (_response)
                 {
@@ -32,8 +36,9 @@ namespace Challenge_04
                         break;
 
                     case 3: //List all badges
-
+                        ListAllBadges();
                         break;
+
                     case 4: //Exit
                         Console.WriteLine("Ok, then.  Bye!");
                         break;
@@ -41,33 +46,65 @@ namespace Challenge_04
                     default:
                         Console.WriteLine("Please enter an appropriate number.");
                         break;
-
                 }
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
         }
 
+
+        public void AddBadge()
+        {
+            Badge badge = new Badge();
+          
+            bool hasAccess = true;
+            while (hasAccess)
+            {
+                Console.WriteLine("List the door that it needs acess to.  Please enter a number and press enter.\n\t" +
+                "1. Door 1\n\t" +
+                "2. Door 2\n\t" +
+                "3. Door 3\n\t");
+
+                int doorInput = int.Parse(Console.ReadLine());
+                int BadgeID = doorInput;
+                _badgeRepo.AddBadgeToDictionary(badge);
+
+                Console.WriteLine("Do you want to add another door? Y/N");
+                string moreDoors = Console.ReadLine().ToLower();
+                if (moreDoors.Contains("y"))
+                    hasAccess = true;
+                else
+                    hasAccess = false;
+            }
+        }
+        
         public void EditBadge()
         {
-            _badgesRepo.GetBadgeDictionary();
+            _badgeRepo.GetBadgeDictionary();
 
             Console.WriteLine("What is the badge number you want to update?  Enter number and press Enter.\n\t");
             string badgeIDStr = Console.ReadLine();
             int badgeIDInput = int.Parse(badgeIDStr);
             int badgeID = badgeIDInput;
 
-            Console.WriteLine("What would you like to do?\n\t"+
-                "1. Remove a Door\n\t"+
+            Console.WriteLine("What is the number of the badge\n\t");
+            string badgeIDStr = Console.ReadLine();
+            int badgeID = int.Parse(badgeIDStr);
+
+
+            Console.WriteLine("What would you like to do?\n\t" +
+                "1. Remove a Door\n\t" +
                 "2. Add a Door");
             int editBadgeInput = int.Parse(Console.ReadLine());
 
-                switch (editBadgeInput)
-                {
+            switch (editBadgeInput)
+            {
                 case 1:
-                    Console.WriteLine("Which door would you like to remove? Press a number and press Enter"+
+                    Console.WriteLine("Which door would you like to remove? Press a number and press Enter" +
                     "1. Door 1\n\t" +
                     "2. Door 2\n\t" +
                     "3. Door 3\n\t" +
-                    "4. Door 4\n\t");                    
+                    "4. Door 4\n\t");
                     _badgesRepo.RemoveDoor(badgeID, Badge);
                     break;
 
@@ -77,57 +114,24 @@ namespace Challenge_04
 
                 default:
                     break;
-                }
-                
-
-
-
-
-            /*
-var item = yourDictionary[theId]; // fetch
-            item.Country = "England"; // mutate
-            yourDictionary[theId] = item; // overwrite */
-        }
-        
-
-
-        public void AddBadge()
-        {
-            Badge badge = new Badge();
-            Console.WriteLine("What is the number of the badge\n\t");
-            string badgeIDStr = Console.ReadLine();
-            int badgeID = int.Parse(badgeIDStr);
-
-            bool hasAccess = true;
-            while (hasAccess)
-            {
-                Console.WriteLine("List the door that it needs acess to.  Please enter a number and press enter.\n\t"+
-                "1. Door 1\n\t"+
-                "2. Door 2\n\t"+
-                "3. Door 3\n\t"+
-                "4. Door 4\n\t");
-                int doorInput = int.Parse(Console.ReadLine());
-                badge = _badgesRepo.SetAccessFromInput(badge, doorInput);
-
-                Console.WriteLine("Do you want to add another door? Y/N");
-                string moreDoors= Console.ReadLine().ToLower();
-                    if (moreDoors.Contains("y"))
-                    hasAccess = true; 
-                    else
-                    hasAccess = false;
             }
-                _badgesRepo.AddBadgeToDictionary(badge);
-
         }
+        */    
+        public void ListAllBadges()
+            {
 
-        public void SeedData()
-        {
-            _badgesRepo.AddBadgeToDictionary(new Badge(123, true, false, false, false));
+           _badgeDictionary = _badgeRepo.GetBadgeDictionary();
 
-            _badgesRepo.AddBadgeToDictionary(new Badge(345, true, true, false, false));
+            Console.WriteLine("BadgeID\tDoorID\tDoorName");
 
-            _badgesRepo.AddBadgeToDictionary(new Badge(678, true, true, true, true));
-        }
+                foreach (Badge badge in _badgeDictionary)
+                {
+                    Console.WriteLine($"{badge.BadgeID}\t{badge.DoorID}\t{badge.DoorName}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+            }
 
         public void PrintMenu()
         {
@@ -141,5 +145,15 @@ var item = yourDictionary[theId]; // fetch
             string responseStr = Console.ReadLine();
             _response = int.Parse(responseStr);
         }
+
+      public void SeedData()
+      {
+          _badgeRepo.AddBadgeToDictionary(new Badge());
+
+          _badgesRepo.AddBadgeToDictionary(new Badge(345, true, true, false, false));
+
+          _badgesRepo.AddBadgeToDictionary(new Badge(678, true, true, true, true));
+      }
+      */
     }
 }

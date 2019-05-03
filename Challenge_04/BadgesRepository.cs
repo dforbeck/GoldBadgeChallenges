@@ -13,39 +13,40 @@ namespace Challenge_04
             
         public Dictionary<int, Badge> GetBadgeDictionary()
         {
-            _badgeDictionary = new Dictionary<int, Badge>();
             return _badgeDictionary;
         }
 
-        public void AddBadgeToDictionary(Badge badge)
+        public void AddDoorsToBadge(int badge, Badge doors)
         {
-            _badgeDictionary.Add(badge.BadgeID, badge);
+            _badgeDictionary.Add(badge, doors);
         }
 
-        public Dictionary GetDoorNameFromInput(int typeInput)
+        public void AddBadge(int badgeInput, Badge doors)
         {
-            Badge type;
-            switch (typeInput)
+            _badgeDictionary.Add(badgeInput, doors);
+        }
+
+        public void DeleteBadge(int badge)
+        {
+            _badgeDictionary.Remove(badge);
+        }
+
+        public void AddDoor(int badgeID, string doorToAdd)
+        {
+            foreach(KeyValuePair<int, Badge> badge in _badgeDictionary)
             {
-                case 1:
-                    type = _doorInput;
-                    break;
-                case 2:
-                    type = ClaimType.Home;
-                    break;
-                case 3:
-                    type = ClaimType.Theft;
-                    break;
-                default:
-                    type = ClaimType.Home;
-                    break;
-            }
-            return type;
-        }
+                if badge.Key == badgeID)
+                {
+                    foreach(int doorID in badge.Value)
+                    {
+                        if doorID == doorToAdd)
+                        {
+                            badge.Value.Add(doorID);
+                        }
 
-        internal void AddDoor(int badgeID, int door)
-        {
-            _badgeDictionary[badgeID].
+                    }
+                }
+            }
         }
 
         internal void RemoveDoor(int badgeID)
