@@ -21,25 +21,26 @@ namespace Challenge_04
 
             while (_response !=4) //#4 is Exit Choice on menu
             {
-                SeedData();
-
                 PrintMenu();
-
 
                 switch (_response)
                 {
                     case 1: //Add badge to the dictionary
-                        AddBadge();
+                        AddBadgeAndDoor();
                         break;
                     case 2: // Edit a badge
                         EditBadge();
                         break;
 
-                    case 3: //List all badges
+                    case 3: //Delete badge
+                        DeleteBadge();
+                        break;
+
+                    case 4: //List all badges
                         ListAllBadges();
                         break;
 
-                    case 4: //Exit
+                    case 5: //Exit
                         Console.WriteLine("Ok, then.  Bye!");
                         break;
 
@@ -53,21 +54,21 @@ namespace Challenge_04
         }
 
 
-        public void AddBadge()
+        public void AddBadgeAndDoor()
         {
             Badge badge = new Badge();
           
             bool hasAccess = true;
             while (hasAccess)
             {
-                Console.WriteLine("List the door that it needs acess to.  Please enter a number and press enter.\n\t" +
+                Console.WriteLine("List the door that it needs acess to.  Please type a number and press enter.\n\t" +
                 "1. Door 1\n\t" +
                 "2. Door 2\n\t" +
                 "3. Door 3\n\t");
 
                 int doorInput = int.Parse(Console.ReadLine());
                 int BadgeID = doorInput;
-                _badgeRepo.AddBadgeToDictionary(badge);
+                _badgeRepo.AddBadge(BadgeID, badge);
 
                 Console.WriteLine("Do you want to add another door? Y/N");
                 string moreDoors = Console.ReadLine().ToLower();
@@ -87,11 +88,6 @@ namespace Challenge_04
             int badgeIDInput = int.Parse(badgeIDStr);
             int badgeID = badgeIDInput;
 
-            Console.WriteLine("What is the number of the badge\n\t");
-            string badgeIDStr = Console.ReadLine();
-            int badgeID = int.Parse(badgeIDStr);
-
-
             Console.WriteLine("What would you like to do?\n\t" +
                 "1. Remove a Door\n\t" +
                 "2. Add a Door");
@@ -103,20 +99,23 @@ namespace Challenge_04
                     Console.WriteLine("Which door would you like to remove? Press a number and press Enter" +
                     "1. Door 1\n\t" +
                     "2. Door 2\n\t" +
-                    "3. Door 3\n\t" +
-                    "4. Door 4\n\t");
-                    _badgesRepo.RemoveDoor(badgeID, Badge);
+                    "3. Door 3\n\t");
+                    string doorStr = Console.ReadLine();
+                    int doorInput = int.Parse(doorStr);
+                    int doorToRemove = doorInput;
+
+                    _badgeRepo.RemoveDoor(badgeID, doorToRemove);
                     break;
 
                 case 2:
-                    _badgesRepo.AddDoor(badgeID);
+                    AddBadgeAndDoor();
                     break;
 
                 default:
                     break;
             }
-        }
-        */    
+        }  
+
         public void ListAllBadges()
             {
 
@@ -133,27 +132,35 @@ namespace Challenge_04
                 Console.Clear();
             }
 
+        public void DeleteBadge()
+        {
+
+            _badgeDictionary = _badgeRepo.GetBadgeDictionary();
+
+            Console.WriteLine("BadgeID\tDoorID\tDoorName");
+
+            foreach (Badge badge in _badgeDictionary)
+            {
+                Console.WriteLine($"{badge.BadgeID}\t{badge.DoorID}\t{badge.DoorName}");
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+
         public void PrintMenu()
         {
             Console.WriteLine(
                 "Hello Security Admin, What would you like to do?  Please enter a number and press Enter.\n\t"+
                 "1. Add a badge\n\t"+
                 "2. Edit a badge\n\t"+
-                "3. List all badges\n\t"+
-                "4. Exit");
+                "3. Delete a badge\n\t"+
+                "4. List all badges\n\t"+
+                "5. Exit");
 
             string responseStr = Console.ReadLine();
             _response = int.Parse(responseStr);
         }
-
-      public void SeedData()
-      {
-          _badgeRepo.AddBadgeToDictionary(new Badge());
-
-          _badgesRepo.AddBadgeToDictionary(new Badge(345, true, true, false, false));
-
-          _badgesRepo.AddBadgeToDictionary(new Badge(678, true, true, true, true));
-      }
-      */
     }
 }

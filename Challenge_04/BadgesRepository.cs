@@ -16,14 +16,9 @@ namespace Challenge_04
             return _badgeDictionary;
         }
 
-        public void AddDoorsToBadge(int badge, Badge doors)
+        public void AddBadge(int doorInput, Badge doors)
         {
-            _badgeDictionary.Add(badge, doors);
-        }
-
-        public void AddBadge(int badgeInput, Badge doors)
-        {
-            _badgeDictionary.Add(badgeInput, doors);
+            _badgeDictionary.Add(doorInput, doors);
         }
 
         public void DeleteBadge(int badge)
@@ -31,11 +26,11 @@ namespace Challenge_04
             _badgeDictionary.Remove(badge);
         }
 
-        public void AddDoor(int badgeID, string doorToAdd)
+        public void AddDoor(int badgeID, int doorToAdd)
         {
             foreach(KeyValuePair<int, Badge> badge in _badgeDictionary)
             {
-                if badge.Key == badgeID)
+                if (badge.Key == badgeID)
                 {
                     foreach(int doorID in badge.Value)
                     {
@@ -49,9 +44,24 @@ namespace Challenge_04
             }
         }
 
-        internal void RemoveDoor(int badgeID)
+        public void RemoveDoor(int badgeID, int doorToRemove)
         {
-           
+            int doorID = doorToRemove;
+
+            foreach (KeyValuePair<int, Badge> badge in _badgeDictionary)
+            {
+                if (badge.Key == badgeID)
+                {
+                    foreach (int doorID in badge.Value)
+                    {
+                        if doorID == doorToRemove)
+                        {
+                            badge.Value.Remove(doorID);
+                        }
+
+                    }
+                }
+            }
         }
     }
 }
