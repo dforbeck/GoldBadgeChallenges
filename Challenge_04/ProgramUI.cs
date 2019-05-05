@@ -134,15 +134,15 @@ namespace Challenge_04
 
         public void DeleteBadge()
         {
+            _badgeRepo.GetBadgeDictionary();
 
-            _badgeDictionary = _badgeRepo.GetBadgeDictionary();
+            Console.WriteLine("What is the badge number you want to delete?  Enter number and press Enter.\n\t");
+            string badgeIDStr = Console.ReadLine();
+            int badgeIDInput = int.Parse(badgeIDStr);
+            int badgeID = badgeIDInput;
 
-            Console.WriteLine("BadgeID\tDoorID\tDoorName");
+            _badgeRepo.DeleteBadge(badgeID);
 
-            foreach (Badge badge in _badgeDictionary)
-            {
-                Console.WriteLine($"{badge.BadgeID}\t{badge.DoorID}\t{badge.DoorName}");
-            }
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
