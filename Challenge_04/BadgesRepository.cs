@@ -6,41 +6,30 @@ using System.Threading.Tasks;
 
 namespace Challenge_04
 {
-    
+
     public class BadgesRepository
     {
-        public Dictionary<int, Badge> _badgeDictionary = new Dictionary<int, Badge>();
-            
-        public Dictionary<int, Badge> GetBadgeDictionary()
+        public Dictionary<int, List<int>> _badgeDictionary = new Dictionary<int, List<int>>();
+        private object badge;
+
+        public Dictionary<int, List<int>> GetBadgeDictionary()
         {
             return _badgeDictionary;
         }
 
-        public void AddBadge(int doorInput, Badge doors)
+        public void AddBadge(int doorInput, List<int> doors)
         {
             _badgeDictionary.Add(doorInput, doors);
         }
 
-        public void DeleteBadge(int badgeID)
-        {
-            _badgeDictionary.Remove(badgeID);
-        }
-
         public void AddDoor(int badgeID, int doorToAdd)
         {
-            foreach(KeyValuePair<int, Badge> badge in _badgeDictionary)
-            {
-                if (badge.Key == badgeID)
-                {
-                    foreach (int badgeID in badge.Value)
-                    {
-                        if doorID == doorToAdd)
-                        {
-                            badge.Value.Add(doorID);
-                        }
+             _badgeDictionary[badgeID].Add(doorToAdd);  // so much better than below
 
-                    }
-                }
+            foreach (KeyValuePair<int, List<int>> badges in _badgeDictionary)
+            {
+                if (badges.Key == badgeID)
+                    badges.Value.Add(doorToAdd);
             }
         }
 
