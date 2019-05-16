@@ -11,7 +11,7 @@ namespace Challenge_04
     public class ProgramUI
     {
         public BadgesRepository _badgeRepo = new BadgesRepository();
-        Dictionary<int, Badge> _badgeDictionary; //here it is on the shelf!  It's available
+        public Dictionary<int, List<int>> _badgeDictionary;  //here it is on the shelf!  It's available
 
         int _response;
 
@@ -26,22 +26,18 @@ namespace Challenge_04
                 switch (_response)
                 {
                     case 1: //Add badge to the dictionary
-                        AddBadgeAndDoor();
+                        AddBadgeAndDoors();
                         break;
                     case 2: // Edit a badge
                         EditBadge();
                         break;
 
                     case 3: //Delete badge
-                        DeleteBadge();
-                        break;
-
-                    case 4: //List all badges
                         ListAllBadges();
                         break;
 
-                    case 5: //Exit
-                        Console.WriteLine("Ok, then.  Bye!");
+                    case 4: //Exit
+                        Console.WriteLine("Ok, then. Bye!");
                         break;
 
                     default:
@@ -54,7 +50,7 @@ namespace Challenge_04
         }
 
 
-        public void AddBadgeAndDoor()
+        public void AddBadgeAndDoors()
         {
             Badge badge = new Badge();
           
@@ -155,9 +151,8 @@ namespace Challenge_04
                 "Hello Security Admin, What would you like to do?  Please enter a number and press Enter.\n\t"+
                 "1. Add a badge\n\t"+
                 "2. Edit a badge\n\t"+
-                "3. Delete a badge\n\t"+
-                "4. List all badges\n\t"+
-                "5. Exit");
+                "3. List all badges\n\t"+
+                "4. Exit");
 
             string responseStr = Console.ReadLine();
             _response = int.Parse(responseStr);

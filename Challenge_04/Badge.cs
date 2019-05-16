@@ -11,8 +11,6 @@ namespace Challenge_04
     {
         public int BadgeID { get; set; }
 
-        /*public int DoorID { get; set; } because need the list not the actual door*/
-
         public List<int> DoorList { get; set; }
 
         /*
