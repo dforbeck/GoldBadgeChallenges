@@ -49,30 +49,26 @@ namespace Challenge_04
             }
         }
 
-
         public void AddBadgeAndDoors()
         {
             Badge badge = new Badge();
-          
+
             bool hasAccess = true;
             while (hasAccess)
-            {
-                Console.WriteLine("List the door that it needs acess to.  Please type a number and press enter.\n\t" +
-                "1. Door 1\n\t" +
-                "2. Door 2\n\t" +
-                "3. Door 3\n\t");
-
-                int doorInput = int.Parse(Console.ReadLine());
-                int BadgeID = doorInput;
-                _badgeRepo.AddBadge(BadgeID, badge);
-
-                Console.WriteLine("Do you want to add another door? Y/N");
-                string moreDoors = Console.ReadLine().ToLower();
-                if (moreDoors.Contains("y"))
+            { 
+                Console.WriteLine("Do you want to add another door to a badge? Y/N");
+                string doorsInput = Console.ReadLine().ToLower();
+                if (doorsInput.Contains("y"))
                     hasAccess = true;
+
+                Console.WriteLine("List the number doors the badge should have access to separated by a comma: ");
+                List<int> doors = Console.ReadLine();
+
                 else
                     hasAccess = false;
             }
+
+            _badgeRepo.AddBadgeAndDoors(badge.BadgeID, doors);
         }
         
         public void EditBadge()

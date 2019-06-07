@@ -16,9 +16,9 @@ namespace Challenge_04
             return _badgeDictionary;
         }
 
-        public void AddBadge(int doorInput, List<int> doors)
+        public void AddBadgeAndDoors(int badgeID, List<int> doors)
         {
-            _badgeDictionary.Add(doorInput, doors);
+            _badgeDictionary.Add(badgeID, doors);
         }
 
         public void AddDoor(int badgeID, int doorToAdd)
